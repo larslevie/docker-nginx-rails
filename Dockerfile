@@ -1,7 +1,11 @@
 FROM nginx:alpine
 MAINTAINER Lars Levie <larslevie@gmail.com>
 
-ENV APP_HOST app
-ENV APP_PORT 3000
+ENV DOCKER_HOST app
+ENV DOCKER_PORT 3000
+ENV SERVER_NAME railsapp.local
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf.template /code/nginx.conf.template
+COPY start-nginx /code/start-nginx
+
+CMD ["/code/start-nginx"]
